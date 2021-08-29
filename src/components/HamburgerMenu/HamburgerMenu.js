@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./HamburgerMenu.scss";
+
 const HamburgerMenu = ({ showNav }) => {
   return (
     <div
