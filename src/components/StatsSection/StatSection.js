@@ -40,7 +40,7 @@ const StatSection = () => {
     const value = event.target.value;
     setInputValue(
       {
-        inputValueState: event.target.value,
+        inputValueState: value,
       },
       () => {
         validateField(value);
@@ -89,10 +89,7 @@ const StatSection = () => {
       getShortenedURL(inputValueField)
         .then((response) => {
           setShortenedURLs((prevState) => ({
-            shortenedURLState: [
-              ...prevState.shortenedURLState,
-              response.data.result,
-            ],
+            shortURLs: [...prevState.shortURLs, response.data.result],
           }));
           localStorage.setItem("pastQueries", JSON.stringify(shortURLs));
           console.log(response.data);

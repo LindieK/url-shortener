@@ -5,7 +5,13 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import "./Form.scss";
 
-const Form = ({ value, errorMessage, formFieldValid, onChange, onSubmit }) => {
+const Form = ({
+  value,
+  errorMessage,
+  formFieldValidState,
+  onChange,
+  onSubmit,
+}) => {
   return (
     <>
       <form data-testid="form" onSubmit={onSubmit}>
@@ -13,7 +19,7 @@ const Form = ({ value, errorMessage, formFieldValid, onChange, onSubmit }) => {
           <Input
             value={value}
             onChange={onChange}
-            formFieldValid={formFieldValid}
+            formFieldValid={formFieldValidState}
           />
           <Button type="submit" value="Shorten It!" />
         </div>
@@ -28,5 +34,5 @@ Form.propTypes = {
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   errorMessage: PropTypes.string,
-  formFieldValid: PropTypes.bool,
+  formFieldValidState: PropTypes.bool,
 };
