@@ -11,16 +11,11 @@ const StatSection = () => {
   const introSubtitle =
     "Track how your links are performing across the web with our advanced statistics dashboard";
 
-  const [inputValueState, setInputValue] = useState("");
-  const [errorMessageState, setErrorMessage] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [formFieldValidState, setFormFieldValid] = useState(true);
-  const [formValidState, setFormValid] = useState(true);
   const [shortenedURLState, setShortenedURLs] = useState([]);
 
-  const { inputValueField } = inputValueState;
-  const { errorMsg } = errorMessageState;
-  const { formValidation } = formValidState;
-  const { formFieldValidation } = formFieldValidState;
   const { shortURLs } = shortenedURLState;
 
   useEffect(() => {
@@ -38,14 +33,9 @@ const StatSection = () => {
 
   const handleInputFieldChange = (event) => {
     const value = event.target.value;
-    setInputValue(
-      {
-        inputValueState: value,
-      },
-      () => {
-        validateField(value);
-      }
-    );
+
+    validateField(value);
+    setInputValue(value);
   };
 
   const validateField = (fieldValue) => {
@@ -53,40 +43,25 @@ const StatSection = () => {
       /((http|https|ftp):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%;:#-~+&amp/]*[\w@?^=%&amp;/~+#-])?/g;
 
     if (!fieldValue) {
-      setErrorMessage({
-        errorMessageState: "Field cannot be blank. Please enter a URL.",
-      });
-      setFormFieldValid({
-        formFieldValidState: false,
-      });
+      setErrorMessage("Field cannot be blank. Please enter a URL.");
+      setFormFieldValid(false);
     } else if (!urlRegEx.test(fieldValue)) {
-      setErrorMessage({
-        errorMessageState: "Please enter a valid URL",
-      });
-      setFormFieldValid({
-        formFieldValidState: false,
-      });
+      setErrorMessage("Please enter a valid URL");
+      setFormFieldValid(false);
     } else {
-      setErrorMessage({
-        errorMessageState: "",
-      });
-      setFormFieldValid({
-        formFieldValidState: true,
-      });
+      setErrorMessage("");
+      setFormFieldValid(true);
     }
   };
 
   const validateForm = () => {
-    setFormValid({
-      formValidState: formFieldValidation,
-    });
-    return formValidation;
+    return formFieldValidState;
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    if (validateForm()) {
-      getShortenedURL(inputValueField)
+    if (inputValue && validateForm()) {
+      getShortenedURL(inputValue)
         .then((response) => {
           setShortenedURLs((prevState) => ({
             shortURLs: [...prevState.shortURLs, response.data.result],
@@ -95,17 +70,20 @@ const StatSection = () => {
           console.log(response.data);
         })
         .catch((err) => console.log(err));
+    } else {
+      setErrorMessage("Field cannot be blank. Please enter a URL.");
+      return false;
     }
   };
 
   return (
     <section data-testid="stats" id="stats">
       <Form
-        value={inputValueField}
+        value={inputValue}
         onSubmit={handleFormSubmit}
         onChange={handleInputFieldChange}
-        errorMessageState={errorMsg}
-        formFieldValidState={formFieldValidation}
+        errorMessage={errorMessage}
+        formFieldValid={formFieldValidState}
       />
       <ResultList results={shortURLs} />
       <StatsIntroText
