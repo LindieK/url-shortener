@@ -9,6 +9,7 @@ const ResultList = (props) => {
   const listItems = shortenedResults
     ? shortenedResults.map((item) => (
         <Result
+          key={item}
           fullLink={item.original_link}
           shortenedLink={item.full_short_link}
         />
@@ -22,5 +23,5 @@ const ResultList = (props) => {
 };
 export default ResultList;
 ResultList.propTypes = {
-  results: PropTypes.string,
+  results: PropTypes.array,
 };
