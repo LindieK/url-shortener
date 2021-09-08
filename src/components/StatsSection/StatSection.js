@@ -22,9 +22,7 @@ const StatSection = () => {
     try {
       const stateQueries = JSON.parse(localStorage.getItem("pastQueries"));
       if (stateQueries) {
-        setShortenedURLs({
-          shortenedURLState: stateQueries,
-        });
+        setShortenedURLs(stateQueries);
       }
     } catch (e) {
       console.error(e);
@@ -63,9 +61,8 @@ const StatSection = () => {
     if (inputValue && validateForm()) {
       getShortenedURL(inputValue)
         .then((response) => {
-          setShortenedURLs((prevState) => ({
-            shortURLs: [...prevState.shortURLs, response.data.result],
-          }));
+          const updatedURLs = [...shortURLs, response.data.result];
+          setShortenedURLs(updatedURLs);
           localStorage.setItem("pastQueries", JSON.stringify(shortURLs));
           console.log(response.data);
         })
@@ -85,7 +82,7 @@ const StatSection = () => {
         errorMessage={errorMessage}
         formFieldValid={formFieldValidState}
       />
-      <ResultList results={shortURLs} />
+      <ResultList results={shortenedURLState} />
       <StatsIntroText
         introTitle="Advanced Statistics"
         bodyText={introSubtitle}
