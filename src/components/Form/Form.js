@@ -5,13 +5,7 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import "./Form.scss";
 
-const Form = ({
-  value,
-  errorMessage,
-  formFieldValidState,
-  onChange,
-  onSubmit,
-}) => {
+const Form = ({ value, errorMessage, formFieldValid, onChange, onSubmit }) => {
   return (
     <>
       <form data-testid="form" onSubmit={onSubmit}>
@@ -19,7 +13,7 @@ const Form = ({
           <Input
             value={value}
             onChange={onChange}
-            formFieldValid={formFieldValidState}
+            formFieldValid={formFieldValid}
           />
           <Button type="submit" value="Shorten It!" />
         </div>
