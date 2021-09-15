@@ -9,7 +9,7 @@ const Result = (props) => {
       <span className="fullLink">{props.fullLink}</span>
       <div className="shortenedDetails">
         <span className="shortenedLink">{props.shortenedLink}</span>
-        <Button value="Copy"></Button>
+        <Button value="Copy" />
       </div>
     </div>
   );
