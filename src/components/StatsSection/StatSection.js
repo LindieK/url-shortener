@@ -31,7 +31,6 @@ const StatSection = () => {
 
   const handleInputFieldChange = (event) => {
     const value = event.target.value;
-
     validateField(value);
     setInputValue(value);
   };
