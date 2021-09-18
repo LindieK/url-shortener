@@ -21,6 +21,8 @@
   & .fullLink {
     font-size: 1.25rem;
     padding: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media screen and (min-width: 768px) {
       font-size: 1.5rem;
@@ -39,6 +41,8 @@
       font-size: 1.25rem;
       color: hsl(180, 66%, 49%);
       padding: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @media screen and (min-width: 768px) {
         font-size: 1.5rem;
