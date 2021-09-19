@@ -4,7 +4,8 @@ import Form from "../Form/Form";
 import ResultList from "../ResultList/ResultList";
 import StatsIntroText from "../StatsIntroText/StatsIntroText";
 import CardDeck from "../CardDeck/CardDeck";
-import { getShortenedURL } from "../../Api";
+import { getShortenedURL } from "../../utils/Api";
+import { addToArray } from "../../utils/utils";
 import "./Statsection.scss";
 
 const StatSection = () => {
@@ -60,7 +61,7 @@ const StatSection = () => {
     if (inputValue && validateForm()) {
       getShortenedURL(inputValue)
         .then((response) => {
-          const updatedURLs = [...shortURLs, response.data.result];
+          const updatedURLs = addToArray(shortURLs, response.data.result);
           setShortenedURLs(updatedURLs);
           localStorage.setItem("pastQueries", JSON.stringify(shortURLs));
           console.log(response.data);
