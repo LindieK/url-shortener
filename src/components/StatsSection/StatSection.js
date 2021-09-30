@@ -61,9 +61,15 @@ const StatSection = () => {
     if (inputValue && validateForm()) {
       getShortenedURL(inputValue)
         .then((response) => {
-          const updatedURLs = addToArray(shortURLs, response.data.result);
+          const updatedURLs = addToArray(
+            shortenedURLState,
+            response.data.result
+          );
           setShortenedURLs(updatedURLs);
-          localStorage.setItem("pastQueries", JSON.stringify(shortURLs));
+          localStorage.setItem(
+            "pastQueries",
+            JSON.stringify(shortenedURLState)
+          );
           console.log(response.data);
         })
         .catch((err) => console.log(err));
