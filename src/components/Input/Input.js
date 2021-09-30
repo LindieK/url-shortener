@@ -10,7 +10,7 @@ const Input = ({ value, onChange, formFieldValid }) => {
       placeholder="Shorten a link here..."
       value={value}
       onChange={onChange}
-      className={formFieldValid ? "" : "error"}
+      className={formFieldValid ? null : "error"}
     />
   );
 };

@@ -21,6 +21,8 @@
   & .fullLink {
     font-size: 1.25rem;
     padding: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media screen and (min-width: 768px) {
       font-size: 1.5rem;
@@ -39,6 +41,8 @@
       font-size: 1.25rem;
       color: hsl(180, 66%, 49%);
       padding: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @media screen and (min-width: 768px) {
         font-size: 1.5rem;
@@ -51,10 +55,20 @@
       }
     }
 
-    a.btn {
+    button.btn {
       border-radius: 0.5rem;
-      padding: 1rem 3rem;
-      text-align: center;
+      margin-top: 0.75rem;
+
+      &.copied {
+        background-color: $dark-violet;
+      }
+
+      @media screen and (min-width: 640px) {
+        border-radius: 0.75rem;
+      }
+      @media screen and (min-width: 1024px) {
+        margin: 0 0 0 0.5rem;
+      }
     }
     @media screen and (min-width: 1280px) {
       flex-direction: row;
