@@ -17,8 +17,6 @@ const StatSection = () => {
   const [formFieldValidState, setFormFieldValid] = useState(true);
   const [shortenedURLState, setShortenedURLs] = useState([]);
 
-  const { shortURLs } = shortenedURLState;
-
   useEffect(() => {
     try {
       const stateQueries = JSON.parse(localStorage.getItem("pastQueries"));
