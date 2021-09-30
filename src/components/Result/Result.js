@@ -19,7 +19,7 @@ const Result = (props) => {
         <span className="shortenedLink">{props.shortenedLink}</span>
         <Button
           value={buttonText}
-          classNames={buttonClicked ? "copied" : null}
+          classNames={buttonClicked ? "copied" : ""}
           handleClick={handleCopyButtonClick}
         />
       </div>
