@@ -7,14 +7,10 @@ import logo from "../../images/logo.svg";
 import "./Nav.scss";
 
 const Nav = () => {
-  const [showNavState, setShowNavState] = useState(false);
-
-  const { showNav } = showNavState;
+  const [showMenu, setShowMenu] = useState(false);
 
   const togggleMenu = () => {
-    showNav
-      ? setShowNavState({ showNav: false })
-      : setShowNavState({ showNav: true });
+    showMenu ? setShowMenu(false) : setShowMenu(true);
   };
 
   return (
@@ -44,10 +40,10 @@ const Nav = () => {
             Sign Up
           </button>
         </div>
-        <MenuIcon handleClick={togggleMenu} />
+        <MenuIcon handleClick={togggleMenu} menuOpen={showMenu} />
       </header>
 
-      <HamburgerMenu showNav={showNav} />
+      <HamburgerMenu menuOpen={showMenu} />
     </>
   );
 };

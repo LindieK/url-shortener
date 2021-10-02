@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 
 import "./HamburgerMenu.scss";
 
-const HamburgerMenu = ({ showNav }) => {
+const HamburgerMenu = ({ menuOpen }) => {
   return (
     <div
       data-testid="hamburger"
       id="hamburger-menu"
-      className={showNav ? "showNav" : "hideNav"}
+      className={menuOpen ? "showNav" : "hideNav"}
     >
       <nav>
         <ul>
