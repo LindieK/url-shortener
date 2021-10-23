@@ -8,3 +8,8 @@ export const addToArray = (arr, newEntry) => {
   }
   return newarr;
 };
+
+
+export const clearHistory = (keyName) => {
+  localStorage.removeItem(keyName);
+};

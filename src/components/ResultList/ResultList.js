@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Result from "../Result/Result";
+import Button from "../Button/Button";
+import { clearHistory } from "../../utils/utils";
 import "./ResultsList.scss";
 
 const ResultList = (props) => {
@@ -15,9 +17,16 @@ const ResultList = (props) => {
         />
       ))
     : "";
+  const handleHistoryButtonClick = () => {
+    clearHistory("pastQueries");
+  };
+  
   return (
-    <div data-testid="results-list" id="results" className="container">
-      {listItems}
+    <div>
+      <div data-testid="results-list" id="results" className="container">
+        {listItems}
+      </div>
+      {shortenedResults && <Button value="Clear History" handleClick={handleHistoryButtonClick}/>}
     </div>
   );
 };
