@@ -1,10 +1,10 @@
 export const addToArray = (arr, newEntry) => {
   let newarr;
   if (arr.length === 5) {
-    arr.shift();
-    newarr = [...arr, newEntry];
+    arr.pop();
+    newarr = [newEntry, ...arr];
   } else {
-    newarr = [...arr, newEntry];
+    newarr = [newEntry, ...arr];
   }
   return newarr;
 };
