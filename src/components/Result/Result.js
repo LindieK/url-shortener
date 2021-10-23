@@ -10,6 +10,10 @@ const Result = (props) => {
     setButtonText("Copied");
     setButtonClicked(true);
     navigator.clipboard.writeText(props.shortenedLink);
+    setTimeOut(() => {
+      setButtonText("Copy")
+      setButtonClicked(false)
+    },5000)
   };
 
   return (
