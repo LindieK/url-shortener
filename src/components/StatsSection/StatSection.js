@@ -5,7 +5,7 @@ import ResultList from "../ResultList/ResultList";
 import StatsIntroText from "../StatsIntroText/StatsIntroText";
 import CardDeck from "../CardDeck/CardDeck";
 import { getShortenedURL } from "../../utils/Api";
-import { addToArray } from "../../utils/utils";
+import { addToArray, clearHistory } from "../../utils/utils";
 import "./Statsection.scss";
 
 const StatSection = () => {
@@ -77,6 +77,11 @@ const StatSection = () => {
     }
   };
 
+  const handleHistoryButtonClick = () => {
+    clearHistory("pastQueries");
+    setShortenedURLs([]);
+  };
+
   return (
     <section data-testid="stats" id="stats">
       <Form
@@ -86,7 +91,10 @@ const StatSection = () => {
         errorMessage={errorMessage}
         formFieldValid={formFieldValidState}
       />
-      <ResultList results={shortenedURLState} />
+      <ResultList
+        results={shortenedURLState}
+        historyButtonClick={handleHistoryButtonClick}
+      />
       <StatsIntroText
         introTitle="Advanced Statistics"
         bodyText={introSubtitle}
