@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Spinner from "../Spinner/Spinner";
 import "./Button.scss";
 
-const Button = ({ value, type, classNames, handleClick }) => {
+const Button = ({ loading, value, type, classNames, handleClick }) => {
   const classes = `btn ${classNames}`;
   return (
     <button
@@ -12,7 +13,7 @@ const Button = ({ value, type, classNames, handleClick }) => {
       type={type}
       onClick={handleClick}
     >
-      {value}
+      {loading ? <Spinner /> : value}
     </button>
   );
 };
