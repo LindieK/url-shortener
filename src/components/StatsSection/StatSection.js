@@ -16,6 +16,7 @@ const StatSection = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [formFieldValidState, setFormFieldValid] = useState(true);
   const [shortenedURLState, setShortenedURLs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     try {
@@ -57,12 +58,14 @@ const StatSection = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (inputValue && validateForm()) {
+      setLoading(true);
       getShortenedURL(inputValue)
         .then((response) => {
           const updatedURLs = addToArray(
             shortenedURLState,
             response.data.result
           );
+          setLoading(false);
           setShortenedURLs(updatedURLs);
           localStorage.setItem(
             "pastQueries",
@@ -70,7 +73,10 @@ const StatSection = () => {
           );
           console.log(response.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
     } else {
       setErrorMessage("Field cannot be blank. Please enter a URL.");
       return false;
@@ -86,6 +92,7 @@ const StatSection = () => {
     <section data-testid="stats" id="stats">
       <Form
         value={inputValue}
+        loading={loading}
         onSubmit={handleFormSubmit}
         onChange={handleInputFieldChange}
         errorMessage={errorMessage}
